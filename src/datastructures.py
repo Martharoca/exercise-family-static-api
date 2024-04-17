@@ -41,25 +41,33 @@ class FamilyStructure:
         return generated_id
 
     def add_member(self, member): # agrego un nuevo mimebro a la lista de _members
-        member["last_name"] = self.last_name
-        member["id"] = self._generateId()
-        member["lucky_numbers"] = list(member.get("lucky_numbers", set()))
         self._members.append(member)
         return member
 
+        # member["last_name"] = self.last_name
+        # member["id"] = self._generateId()
+        # member["lucky_numbers"] = list(member.get("lucky_numbers", set()))
+        # self._members.append(member)
+        # return member
 
-    def delete_member(self, id):   # recorro la lista y elimino el miembro con el id proporcionado
-        for position in range(len(self._members)):
-            if self._members[position]["id"] == id:
-                self._members.pop(position)
-                return None
+
+    def delete_member(self, member_id):   # recorro la lista y elimino el miembro con el id proporcionado
+        print(member_id)
+        for member in self._members:
+            if member.get('id') == member_id:
+                self._members.remove(member)
+                return {"done": True}
+
+        # for position in range(len(self._members)):
+        #     if self._members[position]["id"] == id:
+        #         self._members.pop(position)
+        #         return None
     
 
     def get_member(self, id):   # recorro la lista y obtengo el miembro con el id proporcionado
         for member in self._members:
-            if member["id"] == int(id):
+            if member["id"] == (id):
                 return member
-            return None
 
     # this method is done, it returns a list with all the family members
     def get_all_members(self):
